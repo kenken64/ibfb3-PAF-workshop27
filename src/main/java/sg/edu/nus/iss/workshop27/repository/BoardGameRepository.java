@@ -66,6 +66,7 @@ public class BoardGameRepository {
         Update updateOps = new Update()
             .set("rating", r.getRating())
             .set("comment", r.getComment())
+            .set("posted", r.getPosted())
             .set("edited", r.getEditedComment());
 
         

@@ -58,7 +58,7 @@ public class BoardGameService {
         EditedComment e = new EditedComment();
         e.setComment(result.getComment());
         e.setRating(result.getRating());
-        e.setPosted(LocalDateTime.now());
+        e.setPosted(result.getPosted());
         result.getEditedComment().add(e);
         
         result.setComment(r.getComment());

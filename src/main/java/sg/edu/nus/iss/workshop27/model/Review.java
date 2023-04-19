@@ -17,8 +17,8 @@ public class Review extends EditedComment {
     
     private String name;
     //private List<EditedComment> edited;
-    //private List<EditedComment> edited = new ArrayList<>();
-    private List<EditedComment> e = new ArrayList<>();
+    private List<EditedComment> edited;
+    //private List<EditedComment> e = new ArrayList<>();
 
 
     public Integer getGid() {
@@ -44,15 +44,15 @@ public class Review extends EditedComment {
     }
 
     public List<EditedComment> getEditedComment() {
-        return e;
+        return edited;
     }
 
     public void setEditedComment(List<EditedComment> e) {
-        this.e = e;
+        this.edited = e;
     }
 
     public void addEditedComment(EditedComment e) {
-        this.e.add(e);
+        this.edited.add(e);
     }
 
     public void setName(String name) {
@@ -86,13 +86,16 @@ public class Review extends EditedComment {
 
     public JsonObject toJsonEdited() {
         boolean isEditComments  = false;
-        List<JsonObjectBuilder> editComments = this.getEditedComment()
-            .stream()
-            .map(t -> t.toJSON())
-            .toList();
-        if(editComments.size() > 0){
-            isEditComments = true;
+        if(this.getEditedComment() != null){
+            List<JsonObjectBuilder> editComments = this.getEditedComment()
+                .stream()
+                .map(t -> t.toJSON())
+                .toList();
+            if(editComments.size() > 0){
+                isEditComments = true;
+            }
         }
+            
         return Json.createObjectBuilder()
                 .add("gid", getGid())
                 .add("c_text", getComment())

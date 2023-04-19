@@ -48,17 +48,17 @@ public class BoardGameService {
 
     public long updateComment(EditedComment r){ 
         Review result = this.repo.getReviewById(r.getCid());
-        //List<EditedComment> ll = result.getEditedComment();
+        List<EditedComment> ll = result.getEditedComment();
         System.out.println("r comment : " + r.getComment());
         System.out.println("result comment :" + result.getComment());
-        // if(ll == null){
-        //     ll = new ArrayList<>();
-        // }
+        if(result.getEditedComment() == null){
+            ll = new ArrayList<>();
+            result.setEditedComment(ll);
+        }
         EditedComment e = new EditedComment();
         e.setComment(result.getComment());
         e.setRating(result.getRating());
         e.setPosted(LocalDateTime.now());
-        //ll.add(e);
         result.getEditedComment().add(e);
         
         result.setComment(r.getComment());

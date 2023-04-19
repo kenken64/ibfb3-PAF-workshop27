@@ -48,7 +48,6 @@ public class EditedComment implements Serializable{
         return Json.createObjectBuilder()
                 .add("c_text", getComment())
                 .add("rating", getRating())
-                .add("posted", getPosted().toString())
-                .add("cid", getCid());
+                .add("posted", getPosted().toString());
     }
 }
